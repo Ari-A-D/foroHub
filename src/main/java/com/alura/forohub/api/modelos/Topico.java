@@ -18,6 +18,7 @@ import java.util.Date;
 public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idtopico")
     private long idtopico;
     @Column(name = "mensaje")
     private String mensaje;
@@ -44,5 +45,14 @@ public class Topico {
         this.curso = datosTopico.curso();
         this.respuestas = datosTopico.respuestas();
         this.autor = datosTopico.autor();
+    }
+
+    public void actualizarDatos(DatosListadoTopicos datosActualizarTopico) {
+        if(datosActualizarTopico.titulo() != null){
+            this.titulo = datosActualizarTopico.titulo();
+        }
+        if (datosActualizarTopico.mensaje() != null){
+            this.mensaje = datosActualizarTopico.mensaje();
+        }
     }
 }
