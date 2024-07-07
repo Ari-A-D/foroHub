@@ -3,6 +3,7 @@ package com.alura.forohub.api.controller;
 import com.alura.forohub.api.modelos.DatosRegistroUsuario;
 import com.alura.forohub.api.modelos.Usuario;
 import com.alura.forohub.api.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
     @PostMapping
-    public void registraUsuario(@RequestBody DatosRegistroUsuario parametros){
+    public void registraUsuario(@RequestBody @Valid DatosRegistroUsuario parametros){
         usuarioRepository.save(new Usuario(parametros));
     }
 }
