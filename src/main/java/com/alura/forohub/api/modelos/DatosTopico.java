@@ -4,12 +4,11 @@ import java.util.Date;
 
 public record DatosTopico(Integer idtopico,
                           String mensaje,
-                          String nombreCurso,
                           String titulo,
-                          Date fechaCreacion,
+                          Date fecha_creacion,
                           String status,
                           Integer curso,
-                          String respuesta,
+                          String respuestas,
                           Integer autor
                           ) {
 }

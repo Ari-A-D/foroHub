@@ -1,8 +1,15 @@
 package com.alura.forohub.api.modelos;
 
-public record DatosRegistroUsuario(String nombre,
-                                   String correo_electronico,
-                                   String password,
-                                   String autenticacion,
-                                   Integer perfiles) {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record DatosRegistroUsuario(
+        @NotBlank
+        String nombre,
+        @NotBlank
+        @Email
+        String correo_electronico,
+        String password,
+        String autenticacion,
+        Integer perfiles) {
 }
