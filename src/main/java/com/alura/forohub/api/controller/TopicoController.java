@@ -21,18 +21,33 @@ import java.util.List;
 public class TopicoController {
     @Autowired
     private TopicoRepository topicoRepository;
+
+    //REGISTRAR TOPICO
     @PostMapping
     public void registroTopico(@RequestBody DatosTopico parametros){
         topicoRepository.save(new Topico(parametros));
     }
+
+    //MOSTRAR LISTA DE TOPICOS
     @GetMapping
     public Page<DatosListadoTopicos> listadoTopicos(Pageable paginacion){
         return topicoRepository.findAll(paginacion).map(DatosListadoTopicos::new);
     }
+    
+    //ACTUALIZAR DATOS DEL TOPICO
     @PutMapping
     @Transactional
     public void actualizarTopico(@RequestBody @Valid DatosListadoTopicos datosActualizarTopico){
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.idtopico());
         topico.actualizarDatos(datosActualizarTopico);
     }
+
+    //BORRAR TOPICO
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void eliminarTopico(@PathVariable Long id){
+        Topico topico = topicoRepository.getReferenceById(id);
+        topicoRepository.delete(topico);
+    }
+
 }
